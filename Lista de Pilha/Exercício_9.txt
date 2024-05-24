@@ -1,0 +1,137 @@
+/** 9) Faça um programa que apresente um menu contínuo com as seguintes
+opções e execute de acordo com a escolha do usuário.
+void menu(){
+ printf("1-Inicializa pilha.\n");
+ printf("2-Verifica se a pilha e vazia.\n");
+ printf("3-Verifica se a pilha e cheia.\n");
+ printf("4-Empilha o elemento na pilha.\n");
+ printf("5-Desempilha elemento da pilha.\n");
+ printf("6-Le topo de um pilha.\n");
+ printf("7-Converte um numero decimal em binario.\n");
+ printf("8-Sair.\n");
+}   **/
+
+/// Funcao para converter um inteiro em decimal
+void conversao(int num){
+    if(num == 0){
+        return;
+    }
+    else{
+        printf("%i", num % 2);
+        return conversao(num / 2);
+    }
+}
+
+void menu(){
+    /// Variavel para criacao da pilha
+    Pilha *pi = NULL;
+    /// Variavel de saida do loop
+    int sair = 0;
+    /// Variavel de opcao do menu
+    int opcao;
+    /// Variavel para mostrar topo pilha
+    struct aluno b;
+    /// Variavel para inserir elemento
+    struct aluno a = {2,"Andre",9.5,7.8,8.5};
+    /// Variavel para guardar numero usado na conversao
+    int num;
+    /// Loop do menu
+    while(sair == 0){
+        do{
+            system("cls");
+            printf("1-Inicializa pilha.\n");
+            printf("2-Verifica se a pilha e vazia.\n");
+            printf("3-Verifica se a pilha e cheia.\n");
+            printf("4-Empilha o elemento na pilha.\n");
+            printf("5-Desempilha elemento da pilha.\n");
+            printf("6-Le topo de um pilha.\n");
+            printf("7-Converte um numero decimal em binario.\n");
+            printf("8-Sair.\n\n");
+            printf(">>> Escolha uma opcao: ");
+            scanf("%i", &opcao);
+        }while(opcao < 1 || opcao > 8);
+        /// Criando uma condicao para cada escolha
+        if(opcao == 1){
+            pi = cria_Pilha();
+            printf("\nPilha criada com sucesso\n");
+        }
+        else if(opcao == 2){
+            if(pi == NULL){
+                printf("\nPilha nao existe \n");
+            }
+            else{
+                if(Pilha_vazia(pi) == 0){
+                    printf("\nPilha não esta vazia\n");
+                }
+                else{
+                    printf("\nPilha esta vazia\n");
+                }
+            }
+        }
+        else if(opcao == 3){
+            if(pi == NULL){
+                printf("\nPilha nao existe \n");
+            }
+            else{
+                if(Pilha_vazia(pi) == 0){
+                    printf("\nPilha esta cheia \n");
+                }
+                else{
+                    printf("\nPilha nao esta cheia \n");
+                }
+            }
+        }
+        else if(opcao == 4){
+            if(pi == NULL){
+                printf("\nPilha nao existe \n");
+            }
+            else{
+                insere_Pilha(pi, a);
+                printf("\nElemento inserido na pilha \n");
+            }
+        }
+        else if(opcao == 5){
+            if(pi == NULL){
+                printf("\nPilha nao existe \n");
+            }
+            else if(*pi == NULL){
+                printf("\nPilha esta vazia\n");
+            }
+            else{
+                remove_Pilha(pi);
+                printf("\nElemento removido da pilha \n");
+            }
+        }
+        else if(opcao == 6){
+            if(pi == NULL){
+                printf("\nPilha nao existe \n");
+            }
+            else if(*pi == NULL){
+                printf("\nPilha esta vazia\n");
+            }
+            else{
+                consulta_topo_Pilha(pi, &b);
+                printf("Matricula: %d\n", b.matricula);
+                printf("Nome: %s\n", b.nome);
+                printf("Notas: %f %f %f\n", b.n1, b.n2, b.n3);
+                printf("-------------------------------\n");
+            }
+        }
+        else if(opcao == 7){
+            printf("Digite um numero inteiro para conversao: ");
+            scanf("%i", &num);
+            printf("Numero convertido em binario: ");
+            conversao(num);
+            printf("\n");
+        }
+        else{
+            if(pi == NULL){
+                libera_Pilha(pi);
+            }
+            sair++;
+        }
+        system("pause");
+        system("cls");
+    }
+    return;
+}
