@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "PilhaDin.h" //inclui os ProtÛtipos
+#include "PilhaDin.h" //inclui os Prot√≥tipos
 
-//DefiniÁ„o do tipo Pilha
+//Defini√ß√£o do tipo Pilha
 struct elemento{
     struct aluno dados;
     struct elemento *prox;
@@ -101,7 +101,7 @@ void imprime_Pilha(Pilha* pi){
     }
 }
 
-/// Funcoes desenvolvidas por mim para a conclusao dos exercicios
+/// Funcoes dos exercicios desenvolvidas por mim e minha dupla
 
 void pop2(Pilha* pi){
     /// Verificando se a pilha foi criada
@@ -112,16 +112,16 @@ void pop2(Pilha* pi){
     if((*pi) == NULL){
         return;
     }
-    /** FaÁo um ponteiro tempor·rio para pegar o elemento do topo,
-        depois passo o topo para o prÛximo elemento, e removo o antigo topo **/
+    /** Fa√ßo um ponteiro tempor√°rio para pegar o elemento do topo,
+        depois passo o topo para o pr√≥ximo elemento, e removo o antigo topo **/
     Elem *no = *pi;
     *pi = no->prox;
     free(no);
-    /// Verifico se o novo topo È um elemento
+    /// Verifico se o novo topo √© um elemento
     if((*pi) == NULL){
         return;
     }
-    /// Repitindo o passo de remoÁ„o anterior
+    /// Repitindo o passo de remo√ß√£o anterior
     no = *pi;
     *pi = no->prox;
     free(no);
@@ -132,7 +132,7 @@ void push2(Pilha* pi, struct aluno al1, struct aluno al2){
     if(pi == NULL){
         return;
     }
-    /// Criando um no e alocando ele na memÛria
+    /// Criando um no e alocando ele na mem√≥ria
     Elem* no1;
     no1 = (Elem*) malloc(sizeof(Elem));
     /// Verifico se meu no foi criado
@@ -140,7 +140,7 @@ void push2(Pilha* pi, struct aluno al1, struct aluno al2){
         return;
     }
     /** Atribuo os dados ao meu no,
-        FaÁo ele apontar para o meu antigo no se existir,
+        Fa√ßo ele apontar para o meu antigo no se existir,
         Torno esse no meu novo topo **/
     no1->dados = al1;
     no1->prox = (*pi);
@@ -164,19 +164,19 @@ void popN(Pilha* pi, int n){
     if(pi == NULL){
         return;
     }
-    /** Tudo dentro do laÁo de repetiÁ„o para executar
-        a remoÁ„o o n˙mero de vezes requisitado **/
+    /** Tudo dentro do la√ßo de repeti√ß√£o para executar
+        a remo√ß√£o o n√∫mero de vezes requisitado **/
     while(n > 0){
         /// Verificando se existe algum elemento na pilha
         if((*pi) == NULL){
             return;
         }
-        /** FaÁo um ponteiro tempor·rio para pegar o elemento do topo,
-        depois passo o topo para o prÛximo elemento, e removo o antigo topo **/
+        /** Fa√ßo um ponteiro tempor√°rio para pegar o elemento do topo,
+        depois passo o topo para o pr√≥ximo elemento, e removo o antigo topo **/
         Elem *no = *pi;
         *pi = no->prox;
         free(no);
-        /// Controlando o n˙mero de repetiÁıes
+        /// Controlando o n√∫mero de repeti√ß√µes
         n--;
     }
 }
@@ -186,22 +186,22 @@ Pilha *pilha_copia(Pilha* pi){
     if((*pi) == NULL){
         return NULL;
     }
-    /** Criando um no para pegar as informaÁıes da Pilha original
-        e outro para salvar essas informaÁıes na pilha tempor·ria,
+    /** Criando um no para pegar as informa√ß√µes da Pilha original
+        e outro para salvar essas informa√ß√µes na pilha tempor√°ria,
         e posteriormente na copia **/
     Elem* no = *pi;
     Elem* no_cop;
-    /// Iniciando a pilha tempor·ria que ser· o inverso da original
+    /// Iniciando a pilha tempor√°ria que ser√° o inverso da original
     Elem* pi_temp = NULL;
-    /** Inicializando a pilha cÛpia que ser· o inverso da temor·ria,
-        logo È uma cÛpia da original **/
+    /** Inicializando a pilha c√≥pia que ser√° o inverso da temor√°ria,
+        logo √© uma c√≥pia da original **/
     Pilha* pi_cop = (Pilha*) malloc(sizeof(Pilha));
     if(pi_cop != NULL){
         *pi_cop = NULL;
     }
-    /// Criando v·riavel para excluir a pilha tempor·ria apÛs o uso
+    /// Criando v√°riavel para excluir a pilha tempor√°ria ap√≥s o uso
     Elem* delet_no;
-    /// Copiando os dados da pilha original para a tempor·ria
+    /// Copiando os dados da pilha original para a tempor√°ria
     while(no != NULL){
         no_cop = (Elem*) malloc(sizeof(Elem));
         if(no_cop == NULL){
@@ -213,8 +213,8 @@ Pilha *pilha_copia(Pilha* pi){
 
         no = no->prox;
     }
-    /** Copiando os dados da pilha tempor·ria para a cÛpia,
-        e excluindo a pilha tempor·ria **/
+    /** Copiando os dados da pilha tempor√°ria para a c√≥pia,
+        e excluindo a pilha tempor√°ria **/
     while(pi_temp != NULL){
         no_cop = (Elem*) malloc(sizeof(Elem));
         if(no_cop == NULL){
@@ -386,11 +386,11 @@ void par_impar(Pilha* pi){
     if(pi == NULL){
         return;
     }
-    /// Criando um no para pegar as informaÁıes da pilha
+    /// Criando um no para pegar as informa√ß√µes da pilha
     Elem* no = *pi;
-    /// Criando uma v·riavel para saber a quantidade de pares
+    /// Criando uma v√°riavel para saber a quantidade de pares
     int qtd_par = 0;
-    /// Criando uma v·riavel para saber a quantidade de impares
+    /// Criando uma v√°riavel para saber a quantidade de impares
     int qtd_impar = 0;
     /// Percorrendo a pilha
     while(no != NULL){
@@ -489,7 +489,7 @@ void menu(){
             }
             else{
                 if(Pilha_vazia(pi) == 0){
-                    printf("\nPilha n„o esta vazia\n");
+                    printf("\nPilha n√£o esta vazia\n");
                 }
                 else{
                     printf("\nPilha esta vazia\n");

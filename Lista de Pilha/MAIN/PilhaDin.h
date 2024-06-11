@@ -18,7 +18,7 @@ int Pilha_vazia(Pilha* pi);
 int Pilha_cheia(Pilha* pi);
 void imprime_Pilha(Pilha* pi);
 
-/// Funcoes dos exercicios desenvolvidas por mim
+/// Funcoes dos exercicios desenvolvidas por mim e minha dupla
 void pop2(Pilha* pi);
 void push2(Pilha* pi, struct aluno al1, struct aluno al2);
 void popN(Pilha* pi, int n);
