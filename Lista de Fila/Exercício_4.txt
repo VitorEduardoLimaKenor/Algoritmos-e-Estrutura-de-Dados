@@ -1,0 +1,57 @@
+/** 4) Considere a implementação de filas usando a característica de filas
+    “circulares”, pesquise sobre o assunto. Escreva uma função
+    FuraFila(Fila* f, float x) que insere um item na primeira posição da fila. O
+    detalhe é que seu procedimento deve ser O(1), ou seja, não pode
+    movimentar os outros itens da fila. (observe que este neste caso,
+    estaremos desrespeitando o conceito de FILA – primeiro a entrar é o
+    primeiro a sair). Altere também a função de percorrer a Fila para que ela
+    se aproveite da característica da fila circular.  **/
+
+void FilaCircular(Fila* fi, struct aluno al){
+    /// Verifica se a fila existe
+    if(fi == NULL){
+        return;
+    }
+    /// Criando um no para colocar as informacoes
+    Elem *no = (Elem*) malloc(sizeof(Elem));
+    if(no == NULL){
+          return;
+    }
+    /// furando a fila e interligando o final para se tornar circular
+    no->dados = al;
+    /// Se a fila estiver vazia, o novo nó é o início e o final
+    if (fi->inicio == NULL) {
+        no->prox = no;
+        fi->inicio = no;
+        fi->final = no;
+    }/// Se a fila não estiver vazia, insere o novo nó no início
+    else {
+        no->prox = fi->inicio;
+        fi->inicio = no;
+        fi->final->prox = no;
+    }
+
+    return;
+}
+
+void imprime_fila_circular(Fila* fi){
+    /// Verifica se a fila existe
+    if(fi == NULL){
+        return;
+    }
+    /// Criando um no para pegar as informacoes
+    Elem* no = fi->inicio;
+    /// Percorrendo a Fila circular
+    do{
+        printf("Matricula: %d\n",no->dados.matricula);
+        printf("Nome: %s\n",no->dados.nome);
+        printf("Notas: %f %f %f\n",no->dados.n1,
+                                   no->dados.n2,
+                                   no->dados.n3);
+        printf("-------------------------------\n");
+        no = no->prox;
+
+    }while(no != fi->inicio);
+
+    return;
+}

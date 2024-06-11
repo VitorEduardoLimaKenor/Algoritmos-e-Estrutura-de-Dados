@@ -1,0 +1,4 @@
+Disciplina: Algoritmos E Estrutura De Dados III
+Professor: Dr. Thiago França Naves 
+Aluno: Vitor Eduardo de Lima Kenor |   https://github.com/VitorEduardoLimaKenor
+Aluna: Mayara Rodrigues Pereira    |   https://github.com/MayaRodrigues

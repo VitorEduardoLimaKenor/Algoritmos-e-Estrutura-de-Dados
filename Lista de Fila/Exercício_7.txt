@@ -1,0 +1,29 @@
+/** 7) Implemente a função reverso, que reposiciona os elementos na fila de
+    tal forma que o início da fila torna-se o fim, e vice-versa.  **/
+
+void inverte_fila(Fila* fi){
+    /// Verifica se a fila existe e se tem conteudo
+    if(fi == NULL){
+        return;
+    }
+    if(fi->inicio == NULL){
+        return;
+    }
+    /// Criando auxiliares para poder fazer a inversao
+    Elem* aux1 = fi->inicio;
+    Elem* aux2 = fi->inicio->prox;
+    Elem* aux3 = aux2;
+    /// Fazendo a inversao dos ponteiros
+    fi->inicio = fi->final;
+    fi->final = aux1;
+    fi->final->prox = NULL;
+    /// Fazendo a inversao dos elementos
+    while(aux3 != NULL){
+        aux3 = aux3->prox;
+        aux2->prox = aux1;
+        aux1 = aux2;
+        aux2 = aux3;
+    }
+
+    return;
+}
