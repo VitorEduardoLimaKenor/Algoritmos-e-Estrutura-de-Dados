@@ -1,0 +1,50 @@
+/** 1) Utilizando o código de listas que está disponível junto com a aula no
+    arquivo “ProjListaDinEncad”, faça o que se pede:
+    a. Crie uma nova função que consulta a lista e retorna um aluno
+    pela sua matricula
+    b. Crie uma nova função que consulta a lista e retorna um aluno
+    pela sua posição na lista  **/
+
+int consulta_matricula(Lista* li, int matricula, struct aluno *al){
+    /// Verifica se a lista existe e se tem conteudo
+    if(li == NULL || (*li) == NULL){
+        return 0;
+    }
+    /// Criando um no para acessar as informacoes da lista
+    Elemento* no = *li;
+    /// Percorrendo a lista até achar a matricula desejada ou chegar a NULL
+    while(no != NULL && no->dados.matricula != matricula){
+        no = no->prox;
+    }
+    /// Matricula nao encontrada
+    if(no == NULL){
+        return 0;
+    }
+    else{ /// Matricula encontrada
+        *al = no->dados;
+        return 1;
+    }
+}
+
+int consulta_posicao(Lista* li, int posicao, struct aluno *al){
+    /// Verifica se a lista existe e se tem conteudo
+    if(li == NULL || (*li) == NULL){
+        return 0;
+    }
+    /// Criando um no para acessar as informacoes da lista
+    Elemento* no = *li;
+    /// Criando um contador para saber quantas posicoes andar na lista
+    int qtd = 0;
+    /// Percorrendo a lista até chegar a posicao escolhida
+    while(no != NULL && qtd != posicao){
+        qtd++;
+        no = no->prox;
+    }
+    /// Verifica se encontrou a posição escolhida
+    if (no == NULL) {
+        return 0;
+    }
+    /// Pegando as informacoes do no encontrado
+    *al = no->dados;
+    return 1;
+}

@@ -1,0 +1,33 @@
+/** 6) Escrever uma função para concatenar duas listas encadeadas L1 e L2.   **/
+
+Lista* concatenar_listas(Lista* L1, Lista* L2){
+    /// Verifica se a lista 1 existe e se tem conteudo
+    if(L1 == NULL || (*L1) == NULL){
+        return NULL;
+    }
+    /// Verifica se a lista 2 existe e se tem conteudo
+    if(L2 == NULL || (*L2) == NULL){
+        return NULL;
+    }
+    /// Criando um no para acessar as informacoes da lista 1
+    Elemento* n1 = *L1;
+    /** Percorrendo a lista 1 e interligando o final dela com o
+        inicio da lista 2 **/
+    while(n1 != NULL){
+        if(n1->prox == NULL){
+            n1->prox = (*L2);
+            break;
+        }
+        n1 = n1->prox;
+    }
+    /// Criando uma lista que recebera a uniao dessas listas
+    Lista* L3 = cria_lista();
+    *L3 = *L1;
+    /// Liberando a L1 e a L2
+    *L1 = NULL;
+    *L2 = NULL;
+    libera_lista(L1);
+    libera_lista(L2);
+
+    return L3;
+}

@@ -1,0 +1,43 @@
+/** 5) Receba um número inteiro não negativo e faça uma função que percorra
+    a lista e remova todos os nós que contiverem esse número inteiro
+    armazenado neles. Faça todas as condições de controle necessárias
+    para as remoções sejam corretas.  **/
+
+int remove_info(Lista* li, int num_mat){
+    /// Verifica se a lista existe e se tem conteudo
+    if(li == NULL || (*li) == NULL){
+        return 0;
+    }
+    /// Verifica se o numero da matricula é positivo e esta registrado
+    if(num_mat <= 0 || num_mat > 4){
+        return 0;
+    }
+    /// Criando um no que ira ficar um passo atras
+    Elemento* ant = *li;
+    /// Criando um no que ficara a frente
+    Elemento* no = ant->prox;
+    /// Criando um auxiliar para remocao
+    Elemento* aux;
+    /// Verifica se o no inicial esta sendo procurado
+    if(ant->dados.matricula == num_mat){
+        no = no->prox;
+        aux = ant;
+        ant = ant->prox;
+        free(aux);
+        *li = ant;
+    }
+    /** Percorrendo a lista e tirando os no's de acordo com a matricula
+        e concertando a conexao da lista **/
+    while(no != NULL){
+        if(no->dados.matricula == num_mat){
+            aux = no;
+            no = no->prox;
+            ant->prox = no;
+            free(aux);
+        }else{
+            no = no->prox;
+            ant = ant->prox;
+        }
+    }
+    return 1;
+}

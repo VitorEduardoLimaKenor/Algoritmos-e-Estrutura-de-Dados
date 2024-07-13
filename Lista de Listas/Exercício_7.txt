@@ -1,0 +1,35 @@
+/** 7) Escrever uma função para remover elementos repetidos de uma lista
+    encadeada.   **/
+
+int remove_repetidos(Lista* li){
+    /// Verifica se a lista existe e se tem conteudo
+    if(li == NULL || (*li) == NULL){
+        return 0;
+    }
+    /// Criando um no que ira ficar comparando
+    Elemento* comp = *li;
+    /// Criando um no que ficara um passo atras arrumando a conexao da lista
+    Elemento* ant = *li;
+    /// Criando um no que ficara a frente para comparar
+    Elemento* no = ant->prox;
+    /// Criando um auxiliar para fazer remocao
+    Elemento* aux;
+    /// Caso de parada
+    if(comp == NULL){
+        return 1;
+    }else{ /// recursao
+        while(no != NULL){
+            if(no->dados.matricula == comp->dados.matricula){
+                ant->prox = no->prox;
+                aux = no;
+                no = no->prox;
+                free(aux);
+            }else{
+                ant = ant->prox;
+                no = no->prox;
+            }
+        }
+        comp = comp->prox;
+        return remove_repetidos(&comp);
+    }
+}

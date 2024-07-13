@@ -1,0 +1,67 @@
+/** 8) Escrever um procedimento para fazer a fusão de duas listas encadeadas
+    ordenadas, mantendo-a ordenada. Não devem ser alocados (criados)
+    nós extras. Os nós serão religados para compor a nova lista ordenada.  **/
+
+Lista* fusao_ordenada(Lista* L1, Lista* L2){
+    /// Verifica se a lista 1 existe e se tem conteudo
+    if(L1 == NULL || (*L1) == NULL){
+        return NULL;
+    }
+    /// Verifica se a lista 2 existe e se tem conteudo
+    if(L2 == NULL || (*L2) == NULL){
+        return NULL;
+    }
+    /// Criando um no para acessar as informacoes da lista 1
+    Elemento* n1 = *L1;
+    /// Criando um no que ira monitorar o elemento da frente na lista 1
+    Elemento* n1_prox = n1->prox;
+    /// Criando um no para acessar as informacoes da lista 2
+    Elemento* n2 = *L2;
+    /// Criando um ant para mudar o prox do no anterior na lista 2
+    Elemento* ant_n2 = NULL;
+    /** Percorrendo cada no da lista 2 e fazendo a comparacao com os no's da lista 1.
+        Para conseguir colocar o no em seu devido lugar seguindo a ordenacao. **/
+    while(n2 != NULL){
+        if(n1_prox == NULL){
+            if(n2->prox == NULL){
+                if(n1 == *L1){
+                    *L1 = *L2;
+                }
+                n2->prox = n1;
+                break;
+            }
+            else if(n1->dados.matricula >= n2->dados.matricula && n1->dados.matricula <= n2->prox->dados.matricula){
+                if(n1 == *L1){
+                    *L1 = *L2;
+                }
+                n1->prox = n2->prox;
+                n2->prox = n1;
+                break;
+            }
+            else{
+                n2 = n2->prox;
+            }
+        }
+        else if(n2->dados.matricula >= n1->dados.matricula && n2->dados.matricula <= n1_prox->dados.matricula){
+            n1->prox = n2;
+            ant_n2 = n2;
+            n2 = n2->prox;
+            ant_n2->prox = n1_prox;
+            n1 = n1->prox;
+        }
+        else{
+            n1 = n1->prox;
+            n1_prox = n1_prox->prox;
+        }
+    }
+    /// Criando uma lista que recebera a fusao ordenada dessas listas
+    Lista* L3 = cria_lista();
+    *L3 = *L1;
+    /// Liberando a L1 e a L2
+    *L1 = NULL;
+    *L2 = NULL;
+    libera_lista(L1);
+    libera_lista(L2);
+
+    return L3;
+}

@@ -1,0 +1,7 @@
+/** 9) Considere a implementação de listas encadeadas. Escreva um
+    procedimento Troca(TipoLista* pLista, TipoCelula* p) que, dado um
+    apontador para uma célula qualquer (p), troca de posição essa célula
+    com a sua célula seguinte da lista, como mostrado na figura abaixo.
+    (Obs. Não vale trocar apenas o campo item! Você deverá fazer a
+    manipulação dos apontadores para trocar as duas células de posição).
+    Não esqueça de tratar os casos especiais.  **/
