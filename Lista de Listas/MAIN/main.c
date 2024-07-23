@@ -9,7 +9,7 @@ int main(){
                          {3,"Ana",5.7,6.1,7.4}};
 
     /// Usando as funcoes que foram disponibilizadas pelo professor
-    printf("!!! Fila criada com funcoes disponibilizadas pelo professor !!!\n\n");
+    printf("!!! Lista criada com funcoes disponibilizadas pelo professor !!!\n\n");
     Lista* li = cria_lista();
     printf("Tamanho: %d\n\n",tamanho_lista(li));
 
