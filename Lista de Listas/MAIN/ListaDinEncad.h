@@ -33,3 +33,4 @@ int remove_info(Lista* li, int num_mat);
 Lista* concatenar_listas(Lista* L1, Lista* L2);
 int remove_repetidos(Lista* li);
 Lista* fusao_ordenada(Lista* L1, Lista* L2);
+int Troca_posicao(Lista* li, int matricula);

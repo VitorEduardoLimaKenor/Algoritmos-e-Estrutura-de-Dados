@@ -528,4 +528,38 @@ Lista* fusao_ordenada(Lista* L1, Lista* L2){
     return L3;
 }
 
-
+int Troca_posicao(Lista* li, int matricula){
+    /// Verifica se a lista existe e se tem conteudo
+    if(li == NULL || (*li) == NULL){
+        return 0;
+    }
+    /// Criando um no para acessar as informacoes da lista
+    Elemento* no = *li;
+    /// Criando um prox para poder realizar a troca dos apontadores
+    Elemento* prox =  no->prox;
+    /// Se a troca for no inicio
+    if(no->dados.matricula == matricula){
+        no->prox = prox->prox;
+        prox->prox = no;
+        *li = prox;
+        return 1;
+    }
+    /// Loop para percorrer a lista
+    while(prox != NULL){
+        if(prox->dados.matricula == matricula){
+            /// Se nao existir um elemento na frente a troca nao sera realizada
+            if(prox->prox == NULL){
+                return 0;
+            }
+            no->prox = prox->prox;
+            prox->prox = (no->prox)->prox;
+            (no->prox)->prox = prox;
+            return 1;
+        }
+        else{
+            no = no->prox;
+            prox = prox->prox;
+        }
+    }
+    return 0;
+}

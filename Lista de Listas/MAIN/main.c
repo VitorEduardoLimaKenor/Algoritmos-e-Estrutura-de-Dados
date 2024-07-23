@@ -158,10 +158,13 @@ int main(){
 
     /** Teste do exercicio numero 9 !!!
 
+    printf("!!! Exercicio 9 !!!\n\n");
+    /// Celula com o numero de matricula 4 sera movido
+    Troca_posicao(li, 2);
+    imprime_lista(li);
 
     **/
 
     libera_lista(li);
     return 0;
 }
-
