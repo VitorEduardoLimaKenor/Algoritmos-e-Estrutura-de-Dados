@@ -1,0 +1,32 @@
+/** 3) Faça um função que conte quantos alunos tem uma nota qualquer n1
+    igual, com o seguinte protótipo int conta_lista_nota(Lista* li, int n1). A
+    função deve utilizar apenas o ponteiro li passado como parâmetro, não
+    pode ser criado nenhum outro ponteiro auxiliar. Ao final além de informar
+    a quantidade alunos com a mesma nota, o ponteiro li deve estar
+    apontado para a primeira célula “cabeça” da lista.  **/
+
+int conta_lista_nota(Lista* li, int n1){
+    /// Verifica se a lista existe e se tem conteudo
+    if(li == NULL || (*li) == NULL){
+        return 0;
+    }
+    /// Criando uma variavel para armazenar o numero de repeticoes
+    int repet = 0;
+    /** Loop para passar o ponteiro por todos os no's e parar no ultimo,
+        e contando quantos vezes a nota n1 se repete **/
+    while((*li) != NULL){
+        if((int)(*li)->dados.n1 == n1){
+            repet++;
+        }
+        if((*li)->prox == NULL){
+            break;
+        }else{
+            *li = (*li)->prox;
+        }
+    }
+    /// Voltando o ponteiro para o inicio da lista
+    while((*li)->ant != NULL){
+        *li = (*li)->ant;
+    }
+    return repet;
+}

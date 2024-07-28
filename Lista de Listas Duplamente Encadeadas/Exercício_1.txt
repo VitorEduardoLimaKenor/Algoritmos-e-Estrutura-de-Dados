@@ -1,0 +1,44 @@
+/** 1) Faça uma função que remova um aluno dada a sua respectiva matricula.
+    Sua função deve reajustar os ponteiros ant e prox assim que remover o
+    elemento, não esqueça de verificar se a elemento que será removido
+    está em uma célula que é a primeira ou a última ou alguma célula do
+    meio da lista, para cada posição o ajuste dos ponteiros é diferente.  **/
+
+int remove_aluno(Lista* li, int matricula){
+    /// Verifica se a lista existe e se tem conteudo
+    if(li == NULL || (*li) == NULL){
+        return 0;
+    }
+    /// Criando um Elemento no para acessar as informacoes da lista
+    Elem* no = *li;
+    /// Verifica se a remocao sera feita no inicio
+    if(no->dados.matricula == matricula && no->ant == NULL){
+        (*li) = no->prox;
+        /// Caso o elemento nao seja o unico na lista
+        if(no->prox != NULL){
+            no->prox->ant = NULL;
+        }
+        free(no);
+        return 1;
+    }
+    /// Loop para percorrer a lista caso a remocao nao seja no inicio
+    while(no != NULL){
+        /// Verifica se a remocao sera feita no final
+        if(no->dados.matricula == matricula && no->prox == NULL){
+            no->ant->prox = NULL;
+            free(no);
+            return 1;
+        }
+        /// Remocao no meio da lista
+        else if(no->dados.matricula == matricula){
+            no->ant->prox = no->prox;
+            no->prox->ant = no->ant;
+            free(no);
+            return 1;
+        }
+        else{
+            no = no->prox;
+        }
+    }
+    return 0;
+}

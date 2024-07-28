@@ -1,0 +1,52 @@
+/** 2) Faça uma função que insira um novo elemento na lista de forma
+    ordenada, lembrando que essa inserção pode acontecer para o novo
+    elemento no início, no fim e no meio da lista dependendo da ordem da
+    mesma. Utilize a função insere_lista_ordenada da lista encadeada como
+    base para criar essa função.  **/
+
+int insere_lista_ordenada(Lista* li, struct aluno al){
+    /// Verifica se a lista foi criada
+    if(li == NULL){
+        return 0;
+    }
+    /// Alocando dinamicamente o Elemento no que vai ser adicionado na lista
+    Elem *no = (Elem*) malloc(sizeof(Elem));
+    if(no == NULL){
+        return 0;
+    }
+    /// Passando as informacoes para esse no
+    no->dados = al;
+    /// Caso a lista esteja vazia, so inserir no inicio
+    if((*li) == NULL){
+        no->prox = NULL;
+        no->ant = NULL;
+        *li = no;
+        return 1;
+    }
+    else{
+        /// Criando um ant e um atual para monitorar os no's para a insercao
+        Elem *ant, *atual = *li;
+        /// Percorrendo a lista para saber onde inserir o no
+        while(atual != NULL && atual->dados.matricula < al.matricula){
+            ant = atual;
+            atual = atual->prox;
+        }
+        /// Se o atual estiver no inicio so inserir antes dele
+        if(atual == *li){
+            no->prox = (*li);
+            no->ant = NULL;
+            (*li)->ant = no;
+            *li = no;
+        }
+        /// Caso contrario so arrumar as ligacoes para adicionar no meio ou no fim
+        else{
+            no->prox = atual;
+            if(atual != NULL){
+                atual->ant = no;
+            }
+            no->ant = ant;
+            ant->prox = no;
+        }
+        return 1;
+    }
+}

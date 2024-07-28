@@ -1,0 +1,162 @@
+/** 4) Refaça as funções de inserir e remover no início e fim para que a lista
+    comporte-se de forma circular. No fim, faça uma função que para
+    percorrer a lista inteira utilizando o comportamento circular da mesma.  **/
+
+int insere_lista_circular_inicio(Lista* li, struct aluno al){
+    /// Verifica se a lista foi criada
+    if(li == NULL){
+        return 0;
+    }
+    /// Criando e alocando a variavel no que sera inserida na lista circular
+    Elem* no;
+    no = (Elem*) malloc(sizeof(Elem));
+    if(no == NULL){
+        return 0;
+    }
+    /// Criando um aux para ajudar a fazer a conexao
+    Elem* aux;
+    /// Arrumando a conexao da lista circular
+    no->dados = al;
+    /// Caso for o primeiro elemento
+    if(*li == NULL){
+        no->ant = no;
+        no->prox = no;
+    }else{
+        no->ant = (*li)->ant;
+        no->prox = *li;
+        (*li)->ant = no;
+        /// Caso so tenha um elemento
+        if((*li)->prox == (*li)){
+            (*li)->prox = no;
+        }
+        else{ /// Caso tenha 2 ou mais elementos
+            aux = *li;
+            while(aux->prox != (*li)){
+                 aux = aux->prox;
+            }
+            aux->prox = no;
+        }
+        *li = no;
+    }
+    *li = no;
+    return 1;
+}
+
+int insere_lista_circular_final(Lista* li, struct aluno al){
+    /// Verifica se a lista foi criada
+    if(li == NULL){
+        return 0;
+    }
+    /// Criando e alocando a variavel no que sera inserida na lista circular
+    Elem *no;
+    no = (Elem*) malloc(sizeof(Elem));
+    if(no == NULL){
+        return 0;
+    }
+    /// Criando um aux para ajudar a fazer a conexao
+    Elem* aux;
+    /// Arrumando a conexao da lista circular
+    no->dados = al;
+    /// Caso for o primeiro elemento
+    if(*li == NULL){
+        no->ant = no;
+        no->prox = no;
+        *li = no;
+    }else{ /// Caso tenha 2 ou mais elementos
+        aux = *li;
+        while(aux->prox != (*li)){
+            aux = aux->prox;
+        }
+        aux->prox = no;
+        no->ant = aux;
+        (*li)->ant = no;
+        no->prox = *li;
+    }
+    return 1;
+}
+
+int remove_lista_circular_inicio(Lista* li){
+    /// Verifica se a lista circular foi criada e se tem conteudo
+    if(li == NULL || (*li) == NULL){
+        return 0;
+    }
+    /// Criando um no para acessar o elemento do topo e removelo
+    Elem* topo = *li;
+    /// Criando um no para acessar o ultimo elemento para arrumar a conexao
+    Elem* fim = topo->ant;
+    /// Arrumando as conexoes da lista circular
+    if(topo != fim){
+        *li = topo->prox;
+        (*li)->ant = topo->ant;
+        fim->prox = *li;
+    }
+    else{
+        *li = NULL;
+    }
+    free(topo);
+    return 1;
+}
+
+int remove_lista_circular_final(Lista* li){
+    /// Verifica se a lista circular foi criada e se tem conteudo
+    if(li == NULL || (*li) == NULL){
+        return 0;
+    }
+    /// Criando um no para acessar o ultimo elemento e removelo
+    Elem* fim = (*li)->ant;
+    /// Criando um auxiliar para realizar a remocao
+    Elem* aux = fim;
+    /// Arrumando as conexoes da lista circular
+    if((*li) != fim){
+        fim = fim->ant;
+        fim->prox = aux->prox;
+        (*li)->ant = fim;
+    }
+    else{
+        *li = NULL;
+    }
+    free(aux);
+    return 1;
+}
+
+void imprime_lista_circular(Lista* li){
+    /// Verifica se a lista foi criada ou se tem conteudo
+    if(li == NULL || (*li) == NULL){
+        return;
+    }
+    /// Criando um no para acessar as informacoes da lista circular
+    Elem* no = *li;
+    /// Loop para percorrer a lista circular e apresentar as informacoes
+    do{
+        printf("Matricula: %d\n",no->dados.matricula);
+        printf("Nome: %s\n",no->dados.nome);
+        printf("Notas: %f %f %f\n",no->dados.n1,
+                                   no->dados.n2,
+                                   no->dados.n3);
+        printf("-------------------------------\n");
+
+        no = no->prox;
+    }while(no != (*li));
+    printf("\n");
+}
+
+void libera_lista_circular(Lista* li){
+    /// Verifica se a lista existe e se tem conteudo
+    if(li != NULL && (*li) != NULL){
+        /** Cria uma variavel no para acessar e remover as informacoes
+            comecando pelo final da lista circular **/
+        Elem* no = (*li)->ant;
+        /// Criando um aux para a remocao;
+        Elem* aux;
+        /// Vai rodar até a lista estiver sido removida e faltar apenas o topo
+        while(no != (*li)){
+            aux = no;
+            no = no->ant;
+            free(aux);
+        }
+        /// Removendo o topo
+        aux = no;
+        free(aux);
+        free(li);
+    }
+}

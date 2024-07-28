@@ -1,0 +1,80 @@
+/** 5) Faça uma estrutura do tipo Fila utilizando o conceito de lista duplamente
+    ou simplesmente encadeada, você pode escolher qual irá utilizar. É
+    preciso criar as funções Enfileirar e Desenfileirar. Essas funções devem
+    utilizar o conceito de nó descritor (nodesc), que é uma estrutura que
+    controla onde está a célula inicial da lista e a célula final, a inserção e
+    remoção na fila deve utilizar apenas os nós que estão na estrutura do nó
+    descritor. Abaixo segue as duas estruturas que serão usadas, a função
+    que inicializa o nó descritor e o cabeçalho das funções.
+    struct fila
+    {
+    int info;
+    struct fila *prox;
+    struct fila *ant;
+    };
+    struct nodesc
+    {
+    struct fila *ini;
+    struct fila *fim;
+    };
+    int inicializa_noDesc(noDesc *no)
+    {
+    *no = (noDesc)malloc(sizeof(struct nodesc));
+    //coloca a fila no estado de vazia
+    if(!(*no))
+    {
+    return 0;
+    }
+    else
+    {
+    (*no)->ini = NULL;
+    (*no)->fim = NULL;
+    return 1;
+    }
+    }
+    int enfileirar(noDesc *n, int elem)
+    int desenfileirar(noDesc *n, int *elem)  **/
+    
+
+int enfileirar(Fila* fi, int info){
+    /// Verifica se a fila foi criada
+    if(fi == NULL){
+        return 0;
+    }
+    /// Faz a alocao do no que sera colocado na fila
+    nods *no = (nods*) malloc(sizeof(nods));
+    if(no == NULL){
+        return 0;
+    }
+    no->info = info;
+    no->prox = NULL;
+    /// Caso a fila esteja vazia define o inicio
+    if(fi->final == NULL){
+        fi->inicio = no;
+        no->ant = NULL;
+    }
+    else{ /// Caso o inicio ja existe so redefinimos o final
+        fi->final->prox = no;
+        no->ant = fi->final;
+    }
+    fi->final = no;
+    return 1;
+}
+
+int desenfileirar(Fila* fi){
+    /// Verifica se a fila foi criada e se tem conteudo
+    if(fi == NULL || fi->inicio == NULL){
+        return 0;
+    }
+    nods *no = fi->inicio;
+    fi->inicio = fi->inicio->prox;
+    /// Caso a fila tenha ficado vazia define o final como inexistente
+    if(fi->inicio == NULL){
+        fi->final = NULL;
+    }
+    else{ /// Se hover mais elementos, apenas define o anterior do inicio como nulo
+        fi->inicio->ant = NULL;
+    }
+    free(no);
+    return 1;
+}
