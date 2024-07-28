@@ -1,0 +1,28 @@
+/** 2) Faça um programa que tenha uma nova função chamada popN() para
+    desempilhar n elementos a partir do topo da pilha. Não devem ser
+    utilizadas as funções de push e pop já existentes. **/
+
+
+Função criada para a conclusão do exercício, autores Vitor Eduardo e Mayara Rodrigues:
+
+void popN(Pilha* pi, int n){
+    /// Verificando se a pilha foi criada
+    if(pi == NULL){
+        return;
+    }
+    /** Tudo dentro do laço de repetição para executar
+        a remoção o número de vezes requisitado **/
+    while(n > 0){
+        /// Verificando se existe algum elemento na pilha
+        if((*pi) == NULL){
+            return;
+        }
+        /** Faço um ponteiro temporário para pegar o elemento do topo,
+        depois passo o topo para o próximo elemento, e removo o antigo topo **/
+        Elem *no = *pi;
+        *pi = no->prox;
+        free(no);
+        /// Controlando o número de repetições
+        n--;
+    }
+}

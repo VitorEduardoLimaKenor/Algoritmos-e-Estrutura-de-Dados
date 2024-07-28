@@ -1,0 +1,74 @@
+/** 5) Faça um programa que implemente uma calculadora, contendo as
+    operações básicas (+, -, *, /) **/
+
+
+Função criada para a conclusão do exercício, autores Vitor Eduardo e Mayara Rodrigues:
+
+void calculadora(Pilha* pi){
+    /// Verificando se a pilha existe
+    if(pi == NULL){
+        return;
+    }
+    /// Criando um no para pegarmos as informacoes da pilha
+    Elem* no = *pi;
+    /// Criando variaveis para informar qual operacao sera feita
+    int operacao1, operacao2;
+    /// Criando uma variavel para guardar o numero resultante da operacao
+    float resultado;
+    /// Percorrendo a pilha
+    while(no != NULL){
+        /** Apresentando para o usuario os numeros coletados na struct
+            e as operacoes que podem ser feitas **/
+        printf("( %.2f (?) %.2f ) (?) %.2f = Resultado \n\n", no->dados.n1, no->dados.n2, no->dados.n3);
+        printf("1 - (+) \n");
+        printf("2 - (-) \n");
+        printf("3 - (*) \n");
+        printf("4 - (/) \n\n");
+
+        /// Pedindo a primeira operacao para o usuario
+        do{
+            printf(">>> Primeira operacao: ");
+            scanf("%i", &operacao1);
+        }while(operacao1 < 1 || operacao1 > 4);
+        /// Calculando o resultado com a operacao escolhida
+        if(operacao1 == 1){
+            resultado = no->dados.n1 + no->dados.n2;
+        }
+        else if(operacao1 == 2){
+            resultado = no->dados.n1 - no->dados.n2;
+        }
+        else if(operacao1 == 3){
+            resultado = no->dados.n1 * no->dados.n2;
+        }
+        else if(operacao1 == 4){
+            resultado = no->dados.n1 / no->dados.n2;
+        }
+        /// Pedindo a Segunda operacao para o usuario
+        do{
+            printf(">>> Segunda operacao: ");
+            scanf("%i", &operacao2);
+        }while(operacao2 < 1 || operacao2 > 4);
+        /// Calculando o resultado com a operacao escolhida
+        if(operacao2 == 1){
+            resultado += no->dados.n3;
+        }
+        else if(operacao2 == 2){
+            resultado -= no->dados.n3;
+        }
+        else if(operacao2 == 3){
+            resultado *= no->dados.n3;
+        }
+        else if(operacao2 == 4){
+            resultado /= no->dados.n3;
+        }
+        /// Apresentando o resultado das operacoes
+        printf("\nResultado = %.2f", resultado);
+        printf("\n\n");
+        system("pause");
+        system("cls");
+        /// Passando para o proximo no
+        no = no->prox;
+    }
+
+    return;
+}

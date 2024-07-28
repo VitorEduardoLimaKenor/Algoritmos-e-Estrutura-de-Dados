@@ -1,0 +1,174 @@
+/** 8) Faça um programa que apresente um menu contínuo com as seguintes
+    opções e execute de acordo com a escolha do usuário.
+    void menu()
+    {
+        printf("1-Inicializa fila.\n");
+        printf("2-Verifica se a fila é vazia.\n");
+        printf("3-Verifica se a fila é cheia.\n");
+        printf("4-Enfileira o elemento na fila.\n");
+        printf("5-Desefileira elemento da fila.\n");
+        printf("6-Le o número no início da fila.\n");
+        printf("7-Testar qual fila possui mais elementos .\n");
+        printf("8-Furar a fila .\n");
+        printf("9-Sair.\n");
+    }  **/
+
+Função criada para a conclusão do exercício, autores Vitor Eduardo e Mayara Rodrigues:
+
+void fura_fila(Fila* fi, struct aluno al){
+    /// Verifica se a fila existe e se tem conteudo
+    if(fi == NULL){
+        return;
+    }
+    if(fi->inicio == NULL){
+        return;
+    }
+    /// Criando um no para furar a fila
+    Elem *no = (Elem*) malloc(sizeof(Elem));
+    if(no == NULL){
+          return;
+    }
+    /// fazendo a troca do antigo inicio para o novo inicio
+    no->dados = al;
+    no->prox = fi->inicio;
+    fi->inicio = no;
+    fi->qtd++;
+
+    return;
+}
+
+void menu(){
+    /// Variavel para criacao da pilha
+    Fila* fi = NULL;
+    /// Variavel de saida do loop
+    int sair = 0;
+    /// Variavel de opcao do menu
+    int opcao;
+    /// Variavel para inserir elemento
+   struct aluno a[2] = {{2,"Andre",9.5,7.8,8.5},
+                         {4,"Ricardo",7.5,8.7,6.8}};
+    /// Variavel para ler primeiro da fila
+    struct aluno b;
+    /// Variavel para saber tamanho de uma pilha qualquer
+    int qtd_fila;
+    /// Loop do menu
+    while(sair == 0){
+        do{
+            system("cls");
+            printf("1-Inicializa Fila.\n");
+            printf("2-Verifica se a Fila esta vazia.\n");
+            printf("3-Verifica se a Fila esta cheia.\n");
+            printf("4-Enfileira o elemento na Fila.\n");
+            printf("5-Desenfileira elemento da Fila.\n");
+            printf("6-Le o numero no inicio da fila.\n");
+            printf("7-Testar qual Fila possui mais elementos.\n");
+            printf("8-Furar a fila.\n");
+            printf("9-Sair.\n\n");
+            printf(">>> Escolha uma opcao: ");
+            scanf("%i", &opcao);
+        }while(opcao < 1 || opcao > 9);
+        /// Criando uma condicao para cada escolha
+        if(opcao == 1){
+            fi = cria_Fila();
+            if(fi->inicio == NULL){
+                printf("\nFila inicializada com sucesso\n\n");
+            }
+        }
+        else if(opcao == 2){
+            if(fi == NULL){
+                printf("\nFila nao foi inicializada\n\n");
+            }
+            else{
+                if(fi->inicio == NULL){
+                    printf("\nFila esta vazia\n\n");
+                }
+                else{
+                    printf("\nFila nao esta vazia\n\n");
+                }
+            }
+        }
+        else if(opcao == 3){
+            if(fi == NULL){
+                printf("\nFila  nao foi inicializada\n\n");
+            }
+            else{
+                if(fi->inicio != NULL){
+                    printf("\nFila esta cheia\n\n");
+                }
+                else{
+                    printf("\nFila nao esta cheia\n\n");
+                }
+            }
+        }
+        else if(opcao == 4){
+            if(fi == NULL){
+                printf("\nFila nao foi inicializada\n\n");
+            }
+            else{
+                insere_Fila(fi, a[0]);
+                printf("\nElemento inserido com sucesso\n\n");
+            }
+        }
+        else if(opcao == 5){
+            if(fi == NULL){
+                printf("\nFila nao foi inicializada\n\n");
+            }
+            else{
+                if(fi->inicio == NULL){
+                    printf("\nFila esta vazia\n\n");
+                }
+                else{
+                    remove_Fila(fi);
+                    printf("\nElemento desenfileirado com sucesso\n\n");
+                }
+            }
+        }
+        else if(opcao == 6){
+            if(fi == NULL){
+                printf("\nFila nao foi inicializada\n\n");
+            }
+            else{
+                if(fi->inicio == NULL){
+                    printf("\nFila esta vazia\n\n");
+                }
+                else{
+                    consulta_Fila(fi, &b);
+                    printf("\nMatricula: %d\n", b.matricula);
+                    printf("Nome: %s\n", b.nome);
+                    printf("Notas: %f %f %f\n", b.n1, b.n2, b.n3);
+                }
+            }
+        }
+        else if(opcao == 7){
+            printf("\nDe uma quantidade para uma fila qualquer: ");
+            scanf("%i", &qtd_fila);
+            if(fi == NULL || qtd_fila > fi->qtd){
+                printf("\nEssa fila qualquer e maior que a sua\n");
+            }
+            else{
+                printf("\nSua fila e maior que essa fila qualquer\n");
+            }
+        }
+        else if(opcao == 8){
+            if(fi == NULL){
+                printf("\nFila nao foi inicializada\n\n");
+            }
+            else{
+                if(fi->inicio == NULL){
+                    printf("\nFila esta vazia\n\n");
+                }
+                else{
+                    fura_fila(fi, a[1]);
+                    printf("\nElemento furou a fila com sucesso\n\n");
+                }
+            }
+        }
+        else{
+            libera_Fila(fi);
+            sair++;
+        }
+        system("pause");
+        system("cls");
+    }
+    return;
+}

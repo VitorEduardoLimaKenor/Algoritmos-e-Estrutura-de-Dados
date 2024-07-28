@@ -1,0 +1,48 @@
+/** 4) Recebendo como parâmetro um vetor de float, por exemplo v[n] = “5.5,
+    8, 9.1, 25”, crie uma função que construa lista encadeada com esses
+    valores, seguindo a mesma ordem em que os números estão no vetor
+    recebido.  **/
+
+
+Função criada para a conclusão do exercício, autores Vitor Eduardo e Mayara Rodrigues:
+
+Lista* lista_vetor(float *vet, int tam){
+    /// Criando uma lista
+    Lista* li = cria_lista();
+    /// Criando no que ira passar o vetor para a lista
+    Elemento *no;
+    /// Colocando as infos do vetor na lista em ordem igual ao vetor
+    for(int i = 0; i < tam; i++){
+        no = (Elemento*) malloc(sizeof(Elemento));
+        if(no == NULL){
+            return 0;
+        }
+        no->vet = vet[i];
+        no->prox = NULL;
+        if(i == 0){/// lista vazia: insere início
+            *li = no;
+        }else{
+            Elemento *aux;
+            aux = *li;
+            while(aux->prox != NULL){
+                aux = aux->prox;
+            }
+            aux->prox = no;
+        }
+    }
+    return li;
+}
+
+void imprime_lista_vetor(Lista* li){
+    /// Verifica se a lista existe e se tem conteudo
+    if(li == NULL || (*li) == NULL){
+        return;
+    }
+    /// Criando um no para acessar as informacoes da lista
+    Elemento* no = *li;
+    /// Percorrendo a lista
+    while(no != NULL){
+        printf("%.1f  ", no->vet);
+        no = no->prox;
+    }
+}

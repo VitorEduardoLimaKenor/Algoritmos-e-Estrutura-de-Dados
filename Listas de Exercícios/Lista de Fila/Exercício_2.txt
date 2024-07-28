@@ -1,0 +1,141 @@
+/** 2) Implemente as seguintes combinações de estruturas de dados com fila:
+    a. Uma fila de filas;
+    b. Uma fila de pilhas;
+    c. Uma pilha de filas;  **/
+
+Função criada para a conclusão do exercício, autores Vitor Eduardo e Mayara Rodrigues:
+
+int insere_Fila_na_Fila(Fila* fi, Fila* fi_interna){
+    /// Verifica se a fila existe
+    if(fi == NULL){
+        return 0;
+    }
+    /// Criando um no para colocar as informacoes
+    Elem *no = (Elem*) malloc(sizeof(Elem));
+    if(no == NULL){
+        return 0;
+    }
+    /// Inserindo a fila informada no nó
+    no->filas = fi_interna;
+    no->prox = NULL;
+    /// Verifica se a fila esta vazia
+    /// Se estiver esse no sera seu inicio
+    /// Se não, so continuamos interligando os nós apartir do final
+    if(fi->final == NULL){
+        fi->inicio = no;
+    }
+    else{
+        fi->final->prox = no;
+    }
+    /// Definindo o novo final da fila
+    fi->final = no;
+    fi->qtd++;
+    return 1;
+}
+
+void imprime_Fila_de_filas(Fila* fi){
+    /// Verifica se a fila existe
+    if(fi == NULL){
+       return;
+    }
+    /// Variavel para ser contador
+    int i = 1;
+    /// Criando um no para pegar as informacoes do no
+    Elem* no = fi->inicio;
+    while(no != NULL){
+        /// Apresentando as informações
+        printf("___ Fila de numero %i da Fila ___\n", i);
+        printf("Endereco do inicio dela: %p\n", no->filas->inicio);
+        printf("Endereco do final dela: %p\n", no->filas->final);
+        printf("-------------------------------\n");
+        i++;
+        no = no->prox;
+    }
+}
+
+int insere_Pilha_na_Fila(Fila* fi, Pilha* pi){
+    /// Verifica se a fila existe
+    if(fi == NULL){
+        return 0;
+    }
+    /// Criando um no para colocar as informacoes
+    Elem *no = (Elem*) malloc(sizeof(Elem));
+    if(no == NULL){
+        return 0;
+    }
+    /// Inserindo a fila informada no nó
+    no->pilhas = pi;
+    no->prox = NULL;
+    /// Verifica se a fila esta vazia
+    /// Se estiver esse no sera seu inicio
+    /// Se não, so continuamos interligando os nós apartir do final
+    if(fi->final == NULL){
+        fi->inicio = no;
+    }
+    else{
+        fi->final->prox = no;
+    }
+    /// Definindo o novo final da fila
+    fi->final = no;
+    fi->qtd++;
+    return 1;
+}
+
+void imprime_Fila_de_Pilhas(Fila* fi){
+    /// Verifica se a fila existe
+    if(fi == NULL){
+       return;
+    }
+    /// Variavel para ser contador
+    int i = 1;
+    /// Criando um no para pegar as informacoes do no
+    Elem* no = fi->inicio;
+    while(no != NULL){
+        /// Apresentando as informações
+        printf("___ Pilha de numero %i da Fila ___\n", i);
+        printf("Endereco do topo da pilha: %p\n", *no->pilhas);
+        printf("-------------------------------\n");
+        i++;
+        no = no->prox;
+    }
+}
+
+int insere_Fila_na_Pilha(Pilha* pi, Fila* fi){
+    /// Verifica se a pilha existe
+    if(pi == NULL){
+        return 0;
+    }
+    /// Cria um no para colocar as informacoes
+    Elem* no;
+    no = (Elem*) malloc(sizeof(Elem));
+    if(no == NULL){
+        return 0;
+    }
+    /// Colocando as filas na pilha
+    no->filas = fi;
+    no->prox = (*pi);
+    *pi = no;
+    return 1;
+}
+
+void imprime_Pilha_de_Filas(Pilha* pi){
+    /// Verifica se a pilha existe
+    if(pi == NULL){
+       return;
+    }
+    /// Variavel para dizer o topo da pilha
+    int i = 0;
+    /// Criando um no para pegar as informacoes do no
+    Elem* no = *pi;
+    while(no != NULL){
+        /// Apresentando as informações
+        if(i == 0){
+            printf("________Topo da Pilha_______\n");
+            i++;
+        }
+        printf("Endereco do inicio dela: %p\n", no->filas->inicio);
+        printf("Endereco do final dela: %p\n", no->filas->final);
+        printf("-------------------------------\n");
+        no = no->prox;
+    }
+}

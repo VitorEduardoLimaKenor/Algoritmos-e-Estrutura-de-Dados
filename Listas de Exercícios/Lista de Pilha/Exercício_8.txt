@@ -1,0 +1,38 @@
+/** 8) Faça um programa para determinar se uma cadeia de caracteres (string)
+    é da forma:
+    x C y
+    onde x e y são cadeias de caracteres compostas por letras ‘A’ e/ou ‘B’, e y é
+    o inverso de x. Isto é, se x = “ABABBA”, y deve equivaler a “BABAAB”. Em
+    cada ponto, você só poderá ler o próximo caractere da cadeia.   **/
+
+
+Função criada para a conclusão do exercício, autores Vitor Eduardo e Mayara Rodrigues:
+
+void verifica_repetidos(Pilha *pi){
+    /// Verifica se a Pilha existe
+    if(pi == NULL || *pi == NULL){
+        return;
+    }
+    /// Criando uma variavel para o tamanho da pilha
+    int tam = tamanho_Pilha(pi) / 2;
+    /// Criando os ponteiros para percorrer a pilha
+    Elem* no1 = *pi;
+    Elem* no2 = *pi;
+    /// Deslocar no2 para a segunda metade da pilha
+    for(int i = 0; i < tam; i++){
+        no2 = no2->prox;
+    }
+    /// Verifica elementos repetidos
+    while(no1 != NULL && no2 != NULL){
+        if(no1->dados.matricula == no2->dados.matricula){
+            /// Apresentando o resultado
+            printf("existem elementos repetidos!!!\n\n");
+            return;
+        }
+        no1 = no1->prox;
+        no2 = no2->prox;
+    }
+    /// Apresentando o resultado
+    printf("Nao foram encontrados elementos repetidos!!!\n\n");
+    return;
+}
