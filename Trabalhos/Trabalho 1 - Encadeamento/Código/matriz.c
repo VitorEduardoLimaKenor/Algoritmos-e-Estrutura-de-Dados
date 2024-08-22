@@ -422,6 +422,172 @@ int diminuir_matriz(Mat* matriz, int num_lin, int num_col){
     return 1;
 }
 
+/// funcao que vai apresentar um menu na tela, que permitira explorar todas as funcoes criadas neste trabalho
+void menu(){
+    int sair = 0;
+    int opcao;
+    int qtd_lin, qtd_col;
+    int ps_li, ps_cl, val;
+    Mat* matriz = criar_matriz(0, 0);
+    Elem* consult;
+
+    do{
+        do{
+            printf("---------------------------------------------------------\n");
+            printf("|                       MENU                            |\n");
+            printf("---------------------------------------------------------\n");
+            printf("|              1 - Criar Matriz                         |\n");
+            printf("|              2 - Liberar Matriz                       |\n");
+            printf("|              3 - Inserir na Matriz                    |\n");
+            printf("|              4 - Consulta Posicao Matriz              |\n");
+            printf("|              5 - Consulta Valor Matriz                |\n");
+            printf("|              6 - Imprimir Vizinhos de uma Posicao     |\n");
+            printf("|              7 - Aumentar Matriz                      |\n");
+            printf("|              8 - Diminuir Matriz                      |\n");
+            printf("|              9 - Sair                                 |\n");
+            printf("---------------------------------------------------------\n\n");
+            printf("              >> Opcao: ");
+            scanf("%i", &opcao);
+            system("clear");
+
+        }while(opcao < 1 || opcao > 9);
+
+        if(opcao == 1){
+            if(matriz->mat != NULL){
+                printf("!!! Matriz Anterior Precisa ser Liberada !!!\n\n");
+
+            }
+            else{
+                printf(">>> Criando Matriz: \n");
+                printf("Quantidade de linhas: ");
+                scanf("%i", &qtd_lin);
+                printf("Quantidade de Colunas: ");
+                scanf("%i", &qtd_col);
+                matriz = criar_matriz(qtd_lin, qtd_col);
+                printf("\n\n!!! Matriz foi Criada !!!\n\n");
+
+            }
+
+        }
+        else if(opcao == 2){
+            printf("!!! Matriz Liberada !!!\n\n");
+            liberar_matriz(matriz);
+
+        }
+        else if(opcao == 3){
+            if(matriz->mat == NULL){
+                printf("!!! Matriz nao foi criada !!!\n\n");
+
+            }
+            else{
+                printf(">>> Inserindo Valor na Matriz: \n");
+                printf("Posicao linha onde sera adicionado: ");
+                scanf("%i", &ps_li);
+                printf("Posicao Coluna onde sera adicionado: ");
+                scanf("%i", &ps_cl);
+                printf("Valor que sera colocado: ");
+                scanf("%i", &val);
+                insere_matriz(matriz, ps_li, ps_cl, val);
+                printf("\n\n!!! Matriz foi Atualizada !!!\n\n");
+            }
+
+        }
+        else if(opcao == 4){
+            if(matriz->mat == NULL){
+                printf("!!! Matriz nao foi criada !!!\n\n");
+
+            }
+            else{
+                printf(">>> Fazendo Consulta: \n");
+                printf("Posicao linha da consulta: ");
+                scanf("%i", &ps_li);
+                printf("Posicao Coluna da consulta: ");
+                scanf("%i", &ps_cl);
+                consult = consulta_posicao_matriz(matriz, ps_li, ps_cl);
+                printf("\n\n!!! Valor Encontrado na Consulta foi: %i !!!\n\n", consult->valor);
+
+            }
+
+
+        }
+        else if(opcao == 5){
+            if(matriz->mat == NULL){
+                printf("!!! Matriz nao foi criada !!!\n\n");
+
+            }
+            else{
+                printf(">>> Fazendo Consulta: \n");
+                printf("Valor Procurado na consulta: ");
+                scanf("%i", &val);
+                consult = consulta_valor_matriz(matriz, val);
+                printf("\n\n!!! Posicao Linha do Valor Encontrado na Consulta foi: %i !!!", consult->pos_lin);
+                printf("\n!!! Posicao Coluna do Valor Encontrado na Consulta foi: %i !!!\n\n", consult->pos_col);
+
+            }
+
+        }
+        else if(opcao == 6){
+            if(matriz->mat == NULL){
+                printf("!!! Matriz nao foi criada !!!\n\n");
+
+            }
+            else{
+                printf(">>> Fazendo Consulta: \n");
+                printf("Posicao linha da consulta: ");
+                scanf("%i", &ps_li);
+                printf("Posicao Coluna da consulta: ");
+                scanf("%i", &ps_cl);
+                imprimir_vizinhos(matriz, ps_li, ps_cl);
+
+            }
+
+        }
+        else if(opcao == 7){
+            if(matriz->mat == NULL){
+                printf("!!! Matriz nao foi criada !!!\n\n");
+
+            }
+            else{
+                printf(">>> Aumentando a Matriz: \n");
+                printf("Quantidade de Linhas que a matriz vai passar a ter: ");
+                scanf("%i", &qtd_lin);
+                printf("Quantidade de Colunas que a matriz vai passar a ter: ");
+                scanf("%i", &qtd_col);
+                aumentar_matriz(matriz, qtd_lin, qtd_col);
+
+            }
+
+        }
+        else if(opcao == 8){
+            if(matriz->mat == NULL){
+                printf("!!! Matriz nao foi criada !!!\n\n");
+
+            }
+            else{
+                printf(">>> Diminuir a Matriz: \n");
+                printf("Quantidade de Linhas que a matriz vai passar a ter: ");
+                scanf("%i", &qtd_lin);
+                printf("Quantidade de Colunas que a matriz vai passar a ter: ");
+                scanf("%i", &qtd_col);
+                diminuir_matriz(matriz, qtd_lin, qtd_col);
+
+            }
+
+        }
+        else{
+            liberar_matriz(matriz);
+            free(consult);
+            sair++;
+
+        }
+
+        system("pause");
+        system("clear");
+
+    }while(sair == 0);
+
+}
+
 /// Exibindo meu nome e o da minha dupla, fomos os criadores das funcoes acima
 void creditos(){
     printf("---------------------------------------------------------\n");

@@ -26,6 +26,7 @@ void imprimir_vizinhos(Mat* matriz, int pos_lin, int pos_col);
 void imprime_matriz(Mat* matriz);
 int aumentar_matriz(Mat* matriz, int num_lin, int num_col);
 int diminuir_matriz(Mat* matriz, int num_lin, int num_col);
+void menu();
 void creditos();
 
 #endif // ARQUIVO_MATRIZ_H_INCLUDED
