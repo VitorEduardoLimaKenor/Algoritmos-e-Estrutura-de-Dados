@@ -1,0 +1,27 @@
+/** 3) Faça uma recursiva que conta a quantidade de nós que existem na
+    árvore int TotalNO_Arvore(ArvBin *raiz).  **/
+
+Função criada para a conclusão do exercício, autores Vitor Eduardo e Mayara Rodrigues:
+
+int TotalNO_Arvore(ArvBin *raiz){
+    /// Variavel para contar toda vez que passar por um no
+    int cont = 1;
+    /// Verificando se a arvore existe
+    if(raiz == NULL){
+        return 0;
+
+    } /// Recursao baseada na rechamada somente se o no existir
+    if(*raiz != NULL){
+        if((*raiz)->esq != NULL){
+            cont += TotalNO_Arvore(&((*raiz)->esq));
+
+        }
+        if((*raiz)->dir != NULL){
+            cont += TotalNO_Arvore(&((*raiz)->dir));
+
+        }
+
+    }
+    return cont;
+}
+

@@ -1,0 +1,9 @@
+/** 1) Observe as funções insere_Arvore e remove_Arvore faça testes com as
+    mesmas e descreva como cada função opera na árvore.   **/
+
+Descrição criada para a conclusão do exercício, autores Vitor Eduardo e Mayara Rodrigues:
+
+A função insere_Arvore se baseia em uma inserção por diferença entre valores. Então, se um valor for maior que outro ele será inserido mais a direita, e se for menor será inserido mais a esquerda. Se o valor já existir ele não será adicionado. Quando a raiz não apontar para nada o primeiro valor será apontado como raiz. 
+
+
+A função remove_Arvore trabalha em conjunto com a função remove_atual. A função remove_Arvore vai se basear na diferença do valor dado com os existentes para saber onde o encontrar dentro da arvore. Ao encontrar este valor ela vai chamar outra função que será a remove_atual e passa o endereço do nó que foi encontrado. A remove_atual pega o endereço passado e vai para o nó a esquerda dele "se existir", e cria uma conexão com a extremidade mais a direita deste "nó a esquerda" ligando este com a direita do nó que deseja ser apagado. Feito isso se apaga o nó dado pela função remove_Arvore e devolve uma conexão com os filhos dele para o nó anterior ao removido. Se não existir um anterior por se tratar do nó raiz, o topo da conexão devolvida passa a ser a raiz.

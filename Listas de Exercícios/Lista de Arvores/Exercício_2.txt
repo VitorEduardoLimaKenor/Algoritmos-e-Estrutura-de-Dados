@@ -1,0 +1,38 @@
+/** 2) Observe a função PREOrdem_Arvore e faça testes com essa. Com base
+    na função escreva as funções de varredura EMOrdem_Arvore e
+    POSOrdem_ArvBin.  **/
+
+Função criada para a conclusão do exercício, autores Vitor Eduardo e Mayara Rodrigues:
+
+void emOrdem_Arvore(ArvBin *raiz){
+    /// Verificando se a arvore existe
+    if(raiz == NULL){
+        return;
+
+    }
+    /// Recursao baseada na explicacao da aula do professor no youtube
+    if(*raiz != NULL){
+        emOrdem_Arvore(&((*raiz)->esq));
+        printf("%d\n",(*raiz)->info);
+        emOrdem_Arvore(&((*raiz)->dir));
+
+    }
+
+}
+
+void posOrdem_Arvore(ArvBin *raiz){
+    /// Verificando se a arvore existe
+    if(raiz == NULL){
+        return;
+
+    }
+    /// Recursao baseada na explicacao da aula do professor no youtube
+    if(*raiz != NULL){
+        emOrdem_Arvore(&((*raiz)->dir));
+        emOrdem_Arvore(&((*raiz)->esq));
+        printf("%d\n",(*raiz)->info);
+
+    }
+
+}
+

@@ -1,0 +1,32 @@
+/** 4) Faça uma função que consulta se um determinado valor existe na árvore
+    int Cons_Arvore(ArvBin *raiz, int valor)  **/
+
+Função criada para a conclusão do exercício, autores Vitor Eduardo e Mayara Rodrigues:
+
+int Cons_Arvore(ArvBin *raiz, int valor){
+    /// Verifica se a arvore existe e se tem conteudo
+    if(raiz == NULL || *raiz == NULL){
+        return 0;
+
+    }
+    /// Criando o nó para percorrer e achar o valor na arvore
+    struct NO* consult = *raiz;
+    /// Percorrendo a arvore e procurando o valor
+    while(consult != NULL){
+        if(valor > consult->info){
+            consult = consult->dir;
+        }
+        else if(valor < consult->info){
+            consult = consult->esq;
+        }
+        else{
+            return 1;
+        }
+
+    }
+    /// valor nao encontrado
+    return 0;
+}
+
+
+
