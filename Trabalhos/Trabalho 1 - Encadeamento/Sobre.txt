@@ -11,5 +11,5 @@ cada elemento da matriz criada.
 
 As demais funções requisitadas foram fáceis, pois a matriz ao ser criada já possuía todos os no's/elementos, então a única coisa que precisava ser feito era copiar a lógica criada para percorrer a matriz da função liberar matriz e fazer oque era ordenado.
 
-Por fim acrescentei mais algumas funções usando a lógica de percorrer a matriz. 
+Por fim acrescentamos mais algumas funções usando a lógica de percorrer a matriz. 
 
