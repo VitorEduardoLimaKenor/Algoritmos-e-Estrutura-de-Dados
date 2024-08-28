@@ -249,19 +249,19 @@ void imprime_matriz(Mat* matriz){
 
     Elem* lin = matriz->mat;
     Elem* no;
-
-    printf(">> Matriz[%i][%i]: \n", matriz->num_lin, matriz->num_col);
+    printf("---------------------------------------------------------\n");
+    printf("|                       Matriz[%i][%i]                   |\n", matriz->num_lin, matriz->num_col);
+    printf("---------------------------------------------------------\n");
     while(lin != NULL){
         no = lin;
         lin = lin->baixo;
-
+        printf("\t\t");
         while(no != NULL){
             printf(" %d ", no->valor);
             no = no->direita;
         }
         printf("\n");
     }
-    printf("\n\n");
 
 }
 
@@ -428,11 +428,14 @@ void menu(){
     int opcao;
     int qtd_lin, qtd_col;
     int ps_li, ps_cl, val;
-    Mat* matriz = criar_matriz(0, 0);
-    Elem* consult;
+    Mat* matriz = NULL;
+    Elem* consult = NULL;
 
     do{
         do{
+            if(matriz != NULL){
+                imprime_matriz(matriz);
+            }
             printf("---------------------------------------------------------\n");
             printf("|                       MENU                            |\n");
             printf("---------------------------------------------------------\n");
@@ -448,16 +451,12 @@ void menu(){
             printf("---------------------------------------------------------\n\n");
             printf("              >> Opcao: ");
             scanf("%i", &opcao);
-            system("clear");
+            system("cls");
 
         }while(opcao < 1 || opcao > 9);
 
         if(opcao == 1){
-            if(matriz->mat != NULL){
-                printf("!!! Matriz Anterior Precisa ser Liberada !!!\n\n");
-
-            }
-            else{
+            if(matriz == NULL){
                 printf(">>> Criando Matriz: \n");
                 printf("Quantidade de linhas: ");
                 scanf("%i", &qtd_lin);
@@ -467,15 +466,26 @@ void menu(){
                 printf("\n\n!!! Matriz foi Criada !!!\n\n");
 
             }
+            else{
+                printf("!!! Matriz Anterior Precisa ser Liberada !!!\n\n");
+
+            }
 
         }
         else if(opcao == 2){
-            printf("!!! Matriz Liberada !!!\n\n");
-            liberar_matriz(matriz);
+            if(matriz == NULL){
+                printf("!!! Matriz nao foi criada !!!\n\n");
+
+            }
+            else{
+                printf("!!! Matriz Liberada !!!\n\n");
+                liberar_matriz(matriz);
+                matriz = NULL;
+            }
 
         }
         else if(opcao == 3){
-            if(matriz->mat == NULL){
+            if(matriz == NULL){
                 printf("!!! Matriz nao foi criada !!!\n\n");
 
             }
@@ -493,7 +503,7 @@ void menu(){
 
         }
         else if(opcao == 4){
-            if(matriz->mat == NULL){
+            if(matriz == NULL){
                 printf("!!! Matriz nao foi criada !!!\n\n");
 
             }
@@ -511,7 +521,7 @@ void menu(){
 
         }
         else if(opcao == 5){
-            if(matriz->mat == NULL){
+            if(matriz == NULL){
                 printf("!!! Matriz nao foi criada !!!\n\n");
 
             }
@@ -527,7 +537,7 @@ void menu(){
 
         }
         else if(opcao == 6){
-            if(matriz->mat == NULL){
+            if(matriz == NULL){
                 printf("!!! Matriz nao foi criada !!!\n\n");
 
             }
@@ -543,7 +553,7 @@ void menu(){
 
         }
         else if(opcao == 7){
-            if(matriz->mat == NULL){
+            if(matriz == NULL){
                 printf("!!! Matriz nao foi criada !!!\n\n");
 
             }
@@ -559,7 +569,7 @@ void menu(){
 
         }
         else if(opcao == 8){
-            if(matriz->mat == NULL){
+            if(matriz == NULL){
                 printf("!!! Matriz nao foi criada !!!\n\n");
 
             }
@@ -575,6 +585,12 @@ void menu(){
 
         }
         else{
+            printf("---------------------------------------------------------\n");
+            printf("|!!                      AUTORES                      !!|\n");
+            printf("---------------------------------------------------------\n");
+            printf("|                VITOR EDUARDO DE LIMA KENOR            |\n");
+            printf("|                MAYARA RODRIGUES PEREIRA               |\n");
+            printf("---------------------------------------------------------\n\n");
             liberar_matriz(matriz);
             free(consult);
             sair++;
@@ -582,19 +598,8 @@ void menu(){
         }
 
         system("pause");
-        system("clear");
-
+        system("cls");
     }while(sair == 0);
 
-}
-
-/// Exibindo meu nome e o da minha dupla, fomos os criadores das funcoes acima
-void creditos(){
-    printf("---------------------------------------------------------\n");
-    printf("|!!                      AUTORES                      !!|\n");
-    printf("---------------------------------------------------------\n");
-    printf("|                VITOR EDUARDO DE LIMA KENOR            |\n");
-    printf("|                MAYARA RODRIGUES PEREIRA               |\n");
-    printf("---------------------------------------------------------\n\n");
 }
 

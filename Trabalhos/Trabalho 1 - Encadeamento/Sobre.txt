@@ -1,0 +1,15 @@
+O trabalho consiste na criação de várias funções que possibilitam a criação de uma matriz onde cada nó/elemento desta matriz possui 4 ponteiros que monitoram seus vizinhos.
+
+Para tal tarefa, foram criadas 7 funções que eram requisitadas e 4 complementares que eu e minha dupla decidimos adicionar.
+
+A primeira função foi a mais trabalhosa, pois além de criar o ponteiro para nossa estrutura matriz, ela também inicia todos os nó's/elementos conforme o 
+tamanho requisitado na função. A lógica usada foi a visão de que cada linha da matriz se tratava de uma lista encadeada, e a quantidade de elementos desta lista era definido
+pelo número de colunas da matriz.
+
+A segunda função se tratava de liberar a matriz, ela foi uma função muito importante para a criação das demais, pois nela foi descoberto como faríamos para percorrer
+cada elemento da matriz criada.
+
+As demais funções requisitadas foram fáceis, pois a matriz ao ser criada já possuía todos os no's/elementos, então a única coisa que precisava ser feito era copiar a lógica criada para percorrer a matriz da função liberar matriz e fazer oque era ordenado.
+
+Por fim acrescentei mais algumas funções usando a lógica de percorrer a matriz. 
+
