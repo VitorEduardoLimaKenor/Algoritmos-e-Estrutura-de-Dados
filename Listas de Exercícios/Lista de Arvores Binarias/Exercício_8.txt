@@ -1,0 +1,22 @@
+/** 8) Dada uma árvore binária vazia, insira e imprima os seguintes elementos
+    na ordem que é mostrada: M, F, S, D, J, P, U, A, E, H, Q, T, W, K.  **/
+
+
+Função criada para a conclusão do exercício, autores Vitor Eduardo e Mayara Rodrigues:
+
+/// Para a insercao
+int letras[14] = {77, 70, 83, 68, 74, 80, 85, 65, 69, 72, 81, 84, 87, 75};
+
+/// Para printar 
+void preOrdemLetras_ArvBin(ArvBin *raiz){
+    /// Verifica se a Arvore existe
+    if(raiz == NULL)
+        return;
+    /// Printa as informacoes como letras ao inves de inteiros
+    if(*raiz != NULL){
+        printf("%c\n",(*raiz)->info);
+        preOrdemLetras_ArvBin(&((*raiz)->esq));
+        preOrdemLetras_ArvBin(&((*raiz)->dir));
+    }
+}
+

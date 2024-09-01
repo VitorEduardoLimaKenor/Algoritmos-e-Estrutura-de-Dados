@@ -1,0 +1,34 @@
+/** 5) Faça uma função que verifique quando duas árvores são iguais.  **/
+
+
+Função criada para a conclusão do exercício, autores Vitor Eduardo e Mayara Rodrigues:
+
+int QtdNOarvores_iguais(ArvBin *raiz1, ArvBin *raiz2){
+    /// Variavel para contar toda vez que passar por um no
+    int cont = 1;
+    /// Verificando se as arvores existem
+    if(raiz1 == NULL || raiz2 == NULL){
+        return 0;
+
+    }
+    /// Recursao baseada na rechamada somente se o no existir e se tiverem o mesmo valor
+    if(*raiz1 != NULL && *raiz2 != NULL){
+        if((*raiz1)->esq != NULL && (*raiz2)->esq != NULL){
+            if((*raiz1)->info == (*raiz2)->info){
+                cont += QtdNOarvores_iguais(&((*raiz1)->esq), &((*raiz2)->esq));
+
+            }
+        }
+        if((*raiz1)->dir != NULL && (*raiz2)->dir != NULL){
+            if((*raiz1)->info == (*raiz2)->info){
+                cont += QtdNOarvores_iguais(&((*raiz1)->dir), &((*raiz2)->dir));
+
+            }
+
+        }
+
+    }   
+    /// Voltara a quantidade de NO's totais das arvores se forem iguais
+    return cont;
+}
+

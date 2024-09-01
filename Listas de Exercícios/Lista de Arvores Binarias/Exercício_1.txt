@@ -1,0 +1,33 @@
+/** 1) Faça uma função que calcula quantos nós folha uma determinada árvore
+    possui. Nó folha é aquele nó que não possui filhos.   **/
+
+Função criada para a conclusão do exercício, autores Vitor Eduardo e Mayara Rodrigues:
+
+int CalcNO_folha(ArvBin *raiz){
+    /// Variavel para contar toda vez que passar por um no
+    int cont = 0;
+    /// Verificando se a arvore existe
+    if(raiz == NULL){
+        return 0;
+
+    } /** Recursao baseada na rechamada somente se o no existir.
+          E se nao tiver filhos o contador sera incrementado **/
+    if(*raiz != NULL){
+        if((*raiz)->esq == NULL && (*raiz)->dir == NULL){
+            cont++;
+
+        }
+        if((*raiz)->esq != NULL){
+            cont += CalcNO_folha(&((*raiz)->esq));
+
+        }
+        if((*raiz)->dir != NULL){
+            cont += CalcNO_folha(&((*raiz)->dir));
+
+        }
+
+    }
+
+    return cont;
+}
+

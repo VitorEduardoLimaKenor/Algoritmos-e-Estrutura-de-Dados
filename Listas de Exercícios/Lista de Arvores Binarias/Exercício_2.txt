@@ -1,0 +1,34 @@
+/** 2) Faça uma função para imprimir a árvore de modo que seja possível
+    identificar os nós filhos, pais e folhas.  **/
+
+Função criada para a conclusão do exercício, autores Vitor Eduardo e Mayara Rodrigues:
+
+void imprime_hierarquia(ArvBin *raiz){
+    /// Verificando se a arvore existe
+    if(raiz == NULL){
+        return;
+
+    }
+    /// Recursao que passa pela arvore e notifica infos sobre o NO
+    if(*raiz != NULL){
+        printf("------------------\n");
+        if((*raiz)->esq == NULL && (*raiz)->dir == NULL){
+            printf("Folha: %i \n",(*raiz)->info);
+        }
+        else{
+            printf("Pai: %i \n",(*raiz)->info);
+            if((*raiz)->esq != NULL){
+                printf("Filho da Esquerda: %i \n",((*raiz)->esq)->info);
+            }
+            if((*raiz)->dir != NULL){
+                printf("Filho da Direita: %i \n",((*raiz)->dir)->info);
+            }
+
+        }
+        printf("------------------\n");
+        imprime_hierarquia(&((*raiz)->esq));
+        imprime_hierarquia(&((*raiz)->dir));
+    }
+
+}
+

@@ -1,0 +1,22 @@
+/** 4) Faça uma função que imprime os nós folhas de uma árvore em ordem
+    decrescente.  **/
+
+
+Função criada para a conclusão do exercício, autores Vitor Eduardo e Mayara Rodrigues:
+
+void imprimeDecre_folhas(ArvBin *raiz){
+    /// Verificando se a arvore existe
+    if(raiz == NULL){
+        return;
+
+    } /// Percorrendo a matriz indo para o lado com maior valor, e printando os NO folha
+    if(*raiz != NULL){
+        imprimeDecre_folhas(&((*raiz)->dir));
+        imprimeDecre_folhas(&((*raiz)->esq));
+        if((*raiz)->esq == NULL && (*raiz)->dir == NULL){
+            printf("%d\n",(*raiz)->info);
+        }
+    }
+
+}
+

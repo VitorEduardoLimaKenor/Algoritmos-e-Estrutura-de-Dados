@@ -1,0 +1,28 @@
+/** 6) Faça uma função que elimine todos os valores pares da árvore.   **/
+
+
+Função criada para a conclusão do exercício, autores Vitor Eduardo e Mayara Rodrigues:
+
+int eliminaPares(ArvBin *raiz){
+    /// Verificando se a arvore existe
+    if(raiz == NULL){
+        return 0;
+
+    }
+    /// Percorrendo a Arvore e indentificando os elementos pares;
+    if(*raiz != NULL){
+        if((*raiz)->esq != NULL){
+            eliminaPares(&((*raiz)->esq));
+        }
+        if((*raiz)->dir != NULL){
+            eliminaPares(&((*raiz)->dir));
+        }
+        if((*raiz)->info % 2 == 0){
+            remove_ArvBin(raiz, (*raiz)->info);
+        }
+
+    }
+
+    return 1;
+}
+

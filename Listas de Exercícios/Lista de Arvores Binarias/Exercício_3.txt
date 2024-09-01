@@ -1,0 +1,41 @@
+/** 3) Faça uma função que retorna quantas vezes um determinado valor
+    apareceu na árvore.  **/
+
+
+Função criada para a conclusão do exercício, autores Vitor Eduardo e Mayara Rodrigues:
+
+int qtdValor_aproximado_Arvore(ArvBin *raiz, int valor){
+    /// Verifica se a arvore existe e se tem conteudo
+    if(raiz == NULL || *raiz == NULL){
+        return 0;
+
+    }
+    /// Variavel para contar valores aproximados ou exatos
+    int cont = 0;
+    /// Criando o nó para percorrer e achar valores parecidos na arvore
+    struct NO* consult = *raiz;
+    /// Percorrendo a arvore e procurando os valores
+    while(consult != NULL){
+        if(valor > consult->info && (valor - 10) <  consult->info){
+            cont++;
+        }
+        if(valor < consult->info && (valor + 10) >  consult->info){
+            cont++;
+        }
+
+        if(valor > consult->info){
+            consult = consult->dir;
+        }
+        else if(valor < consult->info){
+            consult = consult->esq;
+        }
+        else{
+            printf("\n !!! Esse valor foi encontrado na Arvore !!! \n");
+            return cont;
+        }
+
+    }
+
+    return cont;
+}
+

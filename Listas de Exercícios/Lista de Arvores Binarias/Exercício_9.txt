@@ -1,0 +1,158 @@
+/** 9) A árvore binária abaixo representa operações matemáticas. "VER NO PDF".
+       a) Crie uma nova função de inserção que trate os números e
+    operadores e construa a árvore da imagem acima. Não é preciso
+    reconstruir a árvore para ler variáveis de caracteres como CHAR,
+    basta tratar os operados como números específicos, como + = -1,
+    - = -2, ou outra codificação parecida.
+       b) Faça uma função que imprime o resultado das operações da
+    árvore, no exemplo da árvore acima o resultado seria 20.
+       c) Imprima a árvore usando as notações infixa, prefixa e posfixa.  **/
+
+
+Função criada para a conclusão do exercício, autores Vitor Eduardo e Mayara Rodrigues:
+
+/// Para a insercao
+/// 45 = +, 46 = 5, 32 = *, 36 = +, 24 = -, 17 = 6, 26 = 3, 33 = 4, 38 = 1. 
+   	int operacao[9] = {45, 46, 32, 36, 24, 17, 26, 33, 38};
+   	
+void preOrdemOperacao_ArvBin(ArvBin *raiz){
+    /// Verifica se a Arvore existe
+    if(raiz == NULL)
+        return;
+    /// Printa a operacao da arvore
+    if(*raiz != NULL){
+        if((*raiz)->info == 45 || (*raiz)->info == 36){
+            printf("+\n");
+        }
+        if((*raiz)->info == 46){
+            printf("5\n");
+        }
+        if((*raiz)->info == 32){
+            printf("*\n");
+        }
+        if((*raiz)->info == 24){
+            printf("-\n");
+        }
+        if((*raiz)->info == 17){
+            printf("6\n");
+        }
+        if((*raiz)->info == 26){
+            printf("3\n");
+        }
+        if((*raiz)->info == 38){
+            printf("1\n");
+        }
+        if((*raiz)->info == 33){
+            printf("4\n");
+        }
+        preOrdemOperacao_ArvBin(&((*raiz)->esq));
+        preOrdemOperacao_ArvBin(&((*raiz)->dir));
+    }
+}
+
+void posOrdemOperacao_ArvBin(ArvBin *raiz){
+    /// Verifica se a Arvore existe
+    if(raiz == NULL)
+        return;
+    /// Printa a operacao da arvore
+    if(*raiz != NULL){
+        posOrdemOperacao_ArvBin(&((*raiz)->dir));
+        posOrdemOperacao_ArvBin(&((*raiz)->esq));
+        if((*raiz)->info == 45 || (*raiz)->info == 36){
+            printf("+\n");
+        }
+        if((*raiz)->info == 46){
+            printf("5\n");
+        }
+        if((*raiz)->info == 32){
+            printf("*\n");
+        }
+        if((*raiz)->info == 24){
+            printf("-\n");
+        }
+        if((*raiz)->info == 17){
+            printf("6\n");
+        }
+        if((*raiz)->info == 26){
+            printf("3\n");
+        }
+        if((*raiz)->info == 38){
+            printf("1\n");
+        }
+        if((*raiz)->info == 33){
+            printf("4\n");
+        }
+    }
+}
+
+void emOrdemOperacao_ArvBin(ArvBin *raiz){
+    /// Verifica se a Arvore existe
+    if(raiz == NULL)
+        return;
+    /// Printa a operacao da arvore
+    if(*raiz != NULL){
+        emOrdemOperacao_ArvBin(&((*raiz)->esq));
+        if((*raiz)->info == 45 || (*raiz)->info == 36){
+            printf("+\n");
+        }
+        if((*raiz)->info == 46){
+            printf("5\n");
+        }
+        if((*raiz)->info == 32){
+            printf("*\n");
+        }
+        if((*raiz)->info == 24){
+            printf("-\n");
+        }
+        if((*raiz)->info == 17){
+            printf("6\n");
+        }
+        if((*raiz)->info == 26){
+            printf("3\n");
+        }
+        if((*raiz)->info == 38){
+            printf("1\n");
+        }
+        if((*raiz)->info == 33){
+            printf("4\n");
+        }
+        emOrdemOperacao_ArvBin(&((*raiz)->dir));
+    }
+}
+
+int result(ArvBin* raiz) {
+    /// Verifica se a Arvore existe
+    if (raiz == NULL){
+        return 0;
+
+    }
+
+    /// Se o nó for um operando retorne seu valor
+    if ((*raiz)->esq == NULL && (*raiz)->dir == NULL){
+        return (*raiz)->info;
+
+    }
+
+    /// Calcula o valor da esquerda
+    int valor_esq = result(&((*raiz)->esq));
+
+    /// Calcula o valor da direita
+    int valor_dir = result(&((*raiz)->dir));
+
+    /// Realiza a operação
+    switch ((*raiz)->info) {
+        case 45:
+            return valor_esq + valor_dir;
+        case 36:
+            return valor_esq + valor_dir;
+        case 32:
+            return valor_esq * valor_dir;
+        case 24:
+            return valor_esq - valor_dir;
+        default:
+            return 0;
+
+    }
+
+}
+
